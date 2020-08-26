@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kaaroScoreboard</title>
+    <script src="./kaaro-clip-game.js" type="module"></script>
+    <script src="./kaaro-scoreboard-card.js" type="module"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&family=Changa+One:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="filler-bar" id="filler-bar"></div>
+      <div class="profile-bar" id="prof-bar">
+        <div class="logo-or-somethoing"></div>
+        <div class="title-container">
+          <h2>kaaroScoreboard</h2>
+          <div class="enter-steps" id="enter-steps">
+            <div class="twitch-login each-step" id="twitch-login">
+              <a id="twitch-auth-link" href="">
+                <div class="glitch-twitch">
+                  <img
+                    class="twitch-logo"
+                    src="./assets/twitch-glitch/Purple/TwitchGlitchPurple.png"
+                    alt=""
+                  />
+                </div>
+                <div class="login-msg" id="login-msg">
+                  Login
+                </div>
+              </a>
+            </div>
+            <div class="enter-to-enter each-step" id="enter-to-enter">
+              <div class="enter-to-enter-logo">
+                ↪
+              </div>
+              <div class="enter-to-enter-lable">
+                Click to Enter
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filler-end"></div>
+      </div>
+      <div class="game-selector-bar" id="game-bar"></div>
+      <div class="all-your-clips all-your-scoreboards" id="scoreboard-list-div">
+          
+        <!-- <kaaro-clip-game></kaaro-clip-game> -->
+        <div class="eachScoreboard isSample">
+          <div class="scoreDiv">
+            2 - 3
+          </div>
+          <div class="scoreboardTitle">
+            <a href="./board?bid=${bid}&sid=${sid}" class="">
+                BO7 Standard Arabia
+            </a>
+          
+          </div>
+          <div class="scoreBtn">
+            <div class="controlRoom"><a href="" class=""></a>🎮</div>
+            <div class="viewBoard"><a href="" class=""></a>📺</div>
+            <div class="customize"><a href="" class=""></a>✨</div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="action-bar"></div>
+      <div class="addOption" id="addOption">
+        <label for="scoreboardName">Add New Scoreboard</label>
+        <input type="text" name="scoreboardName" id="scoreboardName" placeholder="Name of Scoreboard"/>
+        <button id="addScorboard" onclick="addScoreBoard()">Add</button>
+      </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBTwtv0_AUKzQ6GqewoYrAS8Y0MYh107Z4",
+        authDomain: "kaaroscoreboad.firebaseapp.com",
+        databaseURL: "https://kaaroscoreboad.firebaseio.com",
+        projectId: "kaaroscoreboad",
+        storageBucket: "kaaroscoreboad.appspot.com",
+        messagingSenderId: "632027725464",
+        appId: "1:632027725464:web:350f30ab3bc2a2815f9aed",
+        measurementId: "G-MN1VHQW24R",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="./start-the-game.js"></script>
+  </body>
+</html>

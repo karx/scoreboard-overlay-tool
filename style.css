@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #F0F0FF;  
+    font-family: 'Baloo Tammudu 2', cursive;
+    
+}
+h2 {
+    font-family: 'Changa One', cursive;
+}
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    flex-direction: column;
+}
+.filler-bar {
+    height: 40vh;
+    transition: height 2s, transform 2s;
+    transition-delay: 2s;
+
+}
+.filler-bar.clicked {
+    height: 0px;
+}
+.profile-bar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.enter-steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 50px;
+    transition: height 2s, transform 2s;
+}
+.enter-steps.clicked {
+    height:  0px;
+    overflow: hidden;
+}
+.each-step {
+    width: 100px;
+}
+.twitch-login {
+    transition: width 2s, transform 2s;
+    transition-delay: 1s;
+
+}
+.twitch-login.logged-in {
+    width: 0px;
+    overflow: hidden;
+}
+.twitch-logo {
+    height: 40px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.enter-to-enter {
+    cursor: crosshair;
+    text-align: center;
+    
+}
+
+.enter-to-enter-logo {
+    font-size: 2em;
+   line-height: 60px;
+}
+
+
+
+
+.all-your-scoreboards {
+    display: flex;
+
+
+    height: 0px;
+    transition: height 2s, transform 2s;
+    transition-delay: 2s;
+    overflow: hidden;
+
+
+    flex-direction: row;
+    
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.all-your-scoreboards.clicked {
+    height: 60vh;
+    overflow: auto;
+}
+.all-your-scoreboards kaaro-scoreboard-card {
+    align-self: flex-start;
+    margin: 10px;
+    height: 180px;
+    width: 225px;
+    
+    /* padding: 30px; */
+    flex-direction: column;
+    background-color: #D2D2E6;
+    /* border-radius: 15px; */
+    transition: background-color 2s, padding 2s, height 2s, transform 2s;
+    cursor: crosshair;
+    outline: 5px inset;
+    outline-offset: -10px;
+
+}
+.all-your-scoreboards kaaro-scoreboard-card:hover {
+    /* padding: 2px; */
+    background-color: #9146FF;
+}
+
+.addOption {
+    margin-top: 100px;
+    
+    height: 0px;
+    transition: height 2s, transform 2s;
+    transition-delay: 2s;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.addOption.clicked {
+    height: 100px;
+}
+
+/* .scoreBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    height: 0;
+    overflow: hidden;
+    transition: background-color 2s, padding 2s, height 2s, transform 2s;
+
+}
+
+.eachScoreboard:hover .scoreBtn {
+    height: 20%;
+} */
