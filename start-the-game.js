@@ -44,7 +44,7 @@ async function getTwitchBroadcasterId(access_token) {
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         // credentials: 'same-origin', // include, *same-origin, omit
         headers: {
-          'Client-ID': 'qezpomfligmtrmcaw4s7mqijl5948e',
+          'Client-ID': twitch_client_id,
           'Authorization': 'Bearer ' + access_token
         },
       });
