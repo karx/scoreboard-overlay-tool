@@ -1,4 +1,4 @@
-let twitch_client_id = 'qezpomfligmtrmcaw4s7mqijl5948e'
+let twitch_client_id = 'j4zhgepzz3onr4pn0e9a4iumcrxqjq'
 document.getElementById('twitch-auth-link').setAttribute('href', `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${twitch_client_id}&redirect_uri=${window.location.href.replace(/\/+$/, '')}&scope=viewing_activity_read`);
 let db = firebase.firestore();
 
