@@ -80,6 +80,20 @@ function addScore(playerLabel) {
   });
 }
 
+function removeScore(playerLabel) {
+  let currentScore = data[playerLabel].score;
+  console.log(`${playerLabel}Score-value = ${currentScore - 1}`);
+  let toUpdateObj = {};
+  toUpdateObj[`${playerLabel}Score`] = currentScore - 1;
+
+    console.log(toUpdateObj);
+  db.collection(`/scoreboards/${data.bid}/allboards`)
+  .doc(data.sid)
+  .update({
+    ...toUpdateObj
+  });
+}
+
 function updateNamesToCloud() {
   let p1Name = document.getElementById("p1Score-label").value;
   let p2Name = document.getElementById("p2Score-label").value;
