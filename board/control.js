@@ -62,7 +62,7 @@ function updateScoreboadToDOM(scoreboard) {
 }
 
 function updateViewURLToDOM(bid,sid) {
-  let url = `${window.location.href.replace(/\/+$/, '').replace('board','view')}`;
+  let url = `${window.location.href.replace(/\/+$/, '').replace('/board','/view')}`;
   document.getElementById('myInput').value = url;
 }
 
