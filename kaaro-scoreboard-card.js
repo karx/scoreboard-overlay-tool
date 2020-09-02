@@ -70,7 +70,7 @@ class BasicWebComponent extends HTMLElement {
     </div>
     <div class="scoreBtn">
       <div class="controlRoom"><a href="./board?bid=${this.data.bid}&sid=${this.data.sid}" class="">🎮</a></div>
-      <div class="viewBoard"><a href="./view?bid=${this.data.bid}&sid=${this.data.sid}" class="">📺</a></div>
+      <div class="viewBoard"><a href="./scoreView?bid=${this.data.bid}&sid=${this.data.sid}" class="">📺</a></div>
     </div>
     
     
