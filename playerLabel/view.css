@@ -342,3 +342,7 @@ a-scene {
     height: 300px;
     width: 600px;
   }
+
+  .description {
+      font-size: 1.4em;
+  }
