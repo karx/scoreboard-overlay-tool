@@ -14,7 +14,6 @@
     align-items: center;
 }
 .eachPlayer {
-    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,4 +73,9 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+  }
+
+  color-picker-hex {
+      height: 120px;
+      width: 120px;
   }
