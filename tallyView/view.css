@@ -1,0 +1,69 @@
+body {
+    background-color: #0F0F00;  
+    color: #F0F0FF;
+    font-size: 43px;
+
+
+}
+.scoreboard-container{
+    width: 100%;
+    height: 100%;
+}
+
+.scoreboard-label {
+    text-align: center;
+}
+
+.scoreValues {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.eachPlayer {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.labelVal {
+    transform: skew(20deg, 0);
+    background-color: blue;
+    padding: 10px 20px;
+    border-radius: 10px 10px 10px 10px;
+    margin: 0 10px;
+    width: 200px;
+    overflow: hidden;
+    text-align: center;
+}
+.labelVal div {
+    transform: skew(-20deg, 0);
+}
+
+.numVal {
+    transform: skew(20deg, 0);
+    background-color: darkslateblue;
+    padding: 10px 20px;
+    border-radius: 10px 10px 10px 10px;
+    width: 70px;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.numVal {
+}
+a-scene {
+    height: 300px;
+    width: 600px;
+  }
+  
+  .player-details{ 
+      
+    height: 300px;
+    width: 600px;
+  }
