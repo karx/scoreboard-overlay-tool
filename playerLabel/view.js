@@ -20,10 +20,17 @@ async function getBroadcasterId() {
 async function getScoreboardId() {
   return getParameterByName("sid", window.location.search);
 }
+async function getSteamId() {
+  return (getParameterByName("steamid", window.location.search) || '76561198088178833');
+}
 
 async function init() {
+  console.log('getSteamId');
+
   let bid = await getBroadcasterId();
   let sid = await getScoreboardId();
+  let steamid = await getSteamId();
+  console.log('getSteamId');
   data.bid = bid;
   data.sid = sid;
   if (bid && sid) {
@@ -34,7 +41,7 @@ async function init() {
     //     updateScoreboadToDOM(data);
     //   });
   }
-  getDataFromAoe2("76561198098219750");
+  getDataFromAoe2(steamid);
 }
 
 init();
@@ -103,8 +110,10 @@ function updateplayerDatatoDOM(data, playerData) {
   </ul>
   `;
   document.getElementById('desc-card').innerHTML = theDescPage;
-  
+  document.getElementById('mana-icon').innerHTML = latestData.rating;
   document.getElementById('playerName').innerHTML = playerData.pName;
+
+  document.getElementById('set-icon').setAttribute('src', playerData.pAvatar);
 }
 
 function drawCurveTypes(aoe2Data) {
@@ -170,7 +179,7 @@ async function getAoe2DEMatchHistory(steeam_id) {
     game: "aoe2de",
     leaderboard_id: 3,
     steam_id: steeam_id,
-    count: 25,
+    count: 60,
   });
   // Default options are marked with *
   const response = await fetch(aoe2netUrl, {

@@ -63,7 +63,7 @@ body* > {
     width: 500px;
     height: 700px;
     margin: 0 auto;
-    margin-top: 56px;
+    /* margin-top: 56px; */
     border-radius: 25px;
     box-sizing: border-box;
     box-shadow: -8px 9px 16px -3px gray;
@@ -194,7 +194,7 @@ body* > {
 }
 
 #set-icon {
-    height: 9%;
+    /* height: 9%; */
     width: 6%;
     overflow: hidden;
     margin-right: 10px;
