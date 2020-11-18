@@ -79,3 +79,27 @@
       height: 120px;
       width: 120px;
   }
+
+  .playerLabelContainer {
+      margin-top: 20px;
+      /* height: 100px; */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+  }
+
+  .playerLabelContainer input {
+    margin: 5px;
+  }
+
+
+  .searchresults {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+  }
+  .player-result-each {
+
+  }

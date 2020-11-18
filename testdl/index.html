@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>AoE2.net</title>
+    
+    
+    <meta name="websocketurl" content="wss://aoe2.net/ws"/>
+    
+
+    
+    <link rel="stylesheet" type="text/css" href="/webjars/bootswatch/4.2.1/darkly/bootstrap.css" >
+    
+    <link rel="stylesheet" type="text/css" href="/webjars/datatables/1.10.21/css/dataTables.bootstrap4.min.css" >
+    <link rel="stylesheet" type="text/css" href="/webjars/flag-icon-css/3.5.0/css/flag-icon.min.css" >
+    <link rel="stylesheet" type="text/css" href="/webjars/octicons/4.3.0/build/font/octicons.min.css" >
+    <link rel="stylesheet" type="text/css" href="/webjars/octicons/4.3.0/build/octicons.min.css" >
+    
+    <link rel="stylesheet" href="/vassets/stylesheets/450d7ff8fb1a639b715ca946438f3a8b-main.css">
+
+    <link rel="shortcut icon" type="image/png" href="/assets/images/125504a37739b91c50d3c1673bfb00a3-favicon.png">
+
+    <meta name="description" content="Play Age of Empires II: HD (AoE2:HD) and Age of Empires II: Definitive Edition (AoE2:DE) online! Lobby Browser and Leaderboards">
+
+    <script src='/assets/js/ga.js' type='text/javascript'></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <a class="navbar-brand" href="#">AoE2.net</a>
+      <ul class="navbar-nav mr-auto">
+        <li id="game-tab" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="aoe2hd-tab-navbardrop" data-toggle="dropdown">AoE2:DE</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#aoe2hd-lobbies" data-hash="aoe2hd-lobbies">AoE2:HD</a>
+            <a class="dropdown-item" href="#aoe2de-lobbies" data-hash="aoe2hd-leaderboard-rm">AoE2:DE</a>
+          </div>
+        </li>
+        <li id="aoe2hd-lobbies-tab" class="nav-item">
+          <a class="nav-link hidden" href="#aoe2hd-lobbies" data-hash="aoe2hd-lobbies">Lobbies</a>
+        </li>
+        <li id="aoe2de-lobbies-tab" class="nav-item">
+          <a class="nav-link" href="#aoe2de-lobbies" data-hash="aoe2de-lobbies">Lobbies</a>
+        </li>
+        <li id="aoe2de-matches-tab" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="matches-tab-navbardrop" data-toggle="dropdown">Matches</a>
+          <div class="dropdown-menu">
+            
+            <a class="dropdown-item" href="#aoe2de-matches-ongoing" data-hash="aoe2de-matches-ongoing">Ongoing Matches</a>
+          </div>
+        </li>
+
+        <li id="aoe2hd-leaderboard-tab" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle hidden" href="#" id="aoe2hd-leaderboard-navbardrop" data-toggle="dropdown">Leaderboards</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#aoe2hd-leaderboard-rm" data-hash="aoe2hd-leaderboard-rm" >Random Map</a>
+            <a class="dropdown-item" href="#aoe2hd-leaderboard-dm" data-hash="aoe2hd-leaderboard-dm" >Death Match</a>
+          </div>
+        </li>
+        <li id="aoe2de-leaderboard-tab" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="aoe2de-leaderboard-navbardrop" data-toggle="dropdown">Leaderboards</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#aoe2de-leaderboard-rm-1v1" data-hash="aoe2de-leaderboard-rm-1v1" >Random Map</a>
+            <a class="dropdown-item" href="#aoe2de-leaderboard-rm-team" data-hash="aoe2de-leaderboard-rm-team">Team Random Map</a>
+            <a class="dropdown-item" href="#aoe2de-leaderboard-dm-1v1" data-hash="aoe2de-leaderboard-dm-1v1" >Death Match</a>
+            <a class="dropdown-item" href="#aoe2de-leaderboard-dm-team" data-hash="aoe2de-leaderboard-dm-team">Team Death Match</a>
+            <a class="dropdown-item" href="#aoe2de-leaderboard-unranked" data-hash="aoe2de-leaderboard-unranked" >Unranked</a>
+          </div>
+        </li>
+        <li id="api-tab" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="api-navbardrop" data-toggle="dropdown">API</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#api" data-hash="api" >API</a>
+            <a class="dropdown-item" href="#nightbot" data-hash="nightbot" >Nightbot</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li id="language" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="language-navbardrop" data-toggle="dropdown">Language</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="?lang=zh">简化字 (Simplified Chinese)</a>
+            <a class="dropdown-item" href="?lang=zh-TW">繁體字 (Traditional Chinese)</a>
+            <a class="dropdown-item" href="?lang=nl">Nederlands (Dutch)</a>
+            <a class="dropdown-item" href="?lang=en">English</a>
+            <a class="dropdown-item" href="?lang=fr">Français (French)</a>
+            <a class="dropdown-item" href="?lang=de">Deutsch (German)</a>
+            <a class="dropdown-item" href="?lang=el">Ελληνικά (Greek)</a>
+            <a class="dropdown-item" href="?lang=hi">हिन्दी (Hindi)</a>
+            <a class="dropdown-item" href="?lang=it">Italiano (Italian)</a>
+            <a class="dropdown-item" href="?lang=ja">日本語 (Japanese)</a>
+            <a class="dropdown-item" href="?lang=ko">한국어 (Korean)</a>
+            <a class="dropdown-item" href="?lang=ms">Bahasa Melayu (Malay)</a>
+            <a class="dropdown-item" href="?lang=pt">Português-Brasil (Portuguese-Brasil)</a>
+            <a class="dropdown-item" href="?lang=ru">Pусский (Russian)</a>
+            <a class="dropdown-item" href="?lang=es">Español (Spanish)</a>
+            <a class="dropdown-item" href="?lang=es-MX">Español (Spanish-Latin America)</a>
+            <a class="dropdown-item" href="?lang=tr">Türkçe (Turkish)</a>
+            <a class="dropdown-item" href="?lang=vi">Tiếng Việt (Vietnamese)</a>
+          </div>
+        </li>
+        
+        <li id="sits" class="nav-item">
+          <a id="steam-login" class="nav-link" href="/steam/login"><img alt="Sign in through Steam" width="180" height="35" src="/assets/images/sits_01.png" /></a>
+        </li>
+        
+      </ul>
+    </nav>
+    <div id="profile-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+      <div id="profile-modal-dialog" class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="col-sm-2">
+              <img id="profile-modal-avatar" class="modal-title" />
+            </div>
+            <div class="col-sm-9">
+              <div id="profile-modal-name">
+                <div class="profile-modal-flag">
+                  <div class="flag flag-icon-background hidden"></div>
+                </div>
+                <h3 id="profile-modal-personaname" class="modal-title"></h3>
+                <div id="profile-modal-verified">
+                  <a href="javascript:showVerified()"><span class="text-info verified octicon octicon-verified hidden"></span></a>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body row" width="100%">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <table id="profile-modal-rating-details-table" class="table table-condensed table-striped">
+                    <thead>
+                    <tr>
+                      <th>Leaderboard</th>
+                      <th>Rank</th>
+                      <th>Rating</th>
+                      <th>Highest Rating</th>
+                      <th>Games</th>
+                      <th>Streak</th>
+                      <th>Wins</th>
+                      <th>Losses</th>
+                      <th>Win %</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <canvas id="profile-modal-rating-history-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <span id="profile-modal-add-friend"></span>
+            <span id="profile-modal-steam-profile"></span>
+            <span id="profile-modal-ageofempires-profile"></span>
+            <span id="profile-modal-aoe2recs-profile"></span>
+            <span id="profile-modal-aoe2net-profile"></span>
+            <button type="button" class="btn btn-primary"   data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="verified-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="verifiedModalLabel" aria-hidden="true">
+      <div id="verified-modal-dialog" class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="col-sm-11">
+              <h3>Verified Player</h3>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body row" width="100%">
+            <div class="container-fluid">
+              <p>AoE2.net does not verify players.  Verified Players are high level or other well known players in the community and their smurf accounts.  These have been verified by the AoE community.</p>
+              <p>If you see a mistake or wish to add a user, please check out the <a href="https://github.com/SiegeEngineers/aoc-reference-data" target="_blank">aoc-reference-data</a> project on GitHub.  Thank you to everyone who helps maintain this list of players.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10" id="content">
+          <div id="aoe2hd-lobbies" class="main-content tab hidden-tab">
+            <table id="aoe2hd-lobbies-table" class="table table-condensed table-striped lobbies-table" width="100%">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Game</th>
+                <th>Type</th>
+                <th>Elo</th>
+                <th>Lobby Name</th>
+                <th>Location</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+          <div id="aoe2de-lobbies" class="main-content tab hidden-tab">
+            <table id="aoe2de-lobbies-table" class="table table-condensed table-striped lobbies-table" width="100%">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Type</th>
+                <th>Rating</th>
+                <th>Lobby Name</th>
+                <th>Location</th>
+                <th>Server</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+          <div id="aoe2de-matches" class="main-content tab hidden-tab">
+            <table id="aoe2de-matches-table" class="table table-condensed table-striped match-filter" width="100%">
+              <thead>
+              <tr>
+                <th>Leaderboard</th>
+                <th>Rating</th>
+                <th>Match</th>
+                <th>Location</th>
+                <th>Server</th>
+                <th>Started</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+          <div id="aoe2hd-leaderboard" class="main-content tab hidden-tab">
+            <table id="aoe2hd-leaderboard-table" class="table table-condensed table-striped table-hover leaderboard-table" width="100%">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Rank</th>
+                <th>Elo</th><th></th>
+                <th>Country</th>
+                <th>Name</th><th></th><th></th><th></th>
+                <th>Games</th>
+                <th>Wins</th><th></th>
+                <th>Drops</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+          <div id="aoe2de-leaderboard" class="main-content tab hidden-tab">
+            <table id="aoe2de-leaderboard-table" class="table table-condensed table-striped table-hover leaderboard-table" width="100%">
+              <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Rating</th>
+                <th>Name</th>
+                <th>Games</th>
+                <th>Streak</th>
+                <th>Wins</th>
+                <th>Win %</th>
+                <th>Last Match (ended)</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+          <div id="profile" class="main-content tab hidden-tab">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-2">
+                  <img id="profile-avatar" alt="Steam Avatar" width="184" height="184" src="/assets/images/fafa340202b7f16015984c90062f7b2a-unknownavatarfull.jpg">
+                </div>
+                <div class="col-lg-8">
+                  <div id="profile-name">
+                    <div class="profile-flag">
+                      <div class="flag flag-icon-background hidden"></div>
+                    </div>
+                    <h3 id="profile-personaname" class="modal-title"></h3>
+                    <div id="profile-verified">
+                      <a href="javascript:showVerified()"><span class="text-info verified octicon octicon-verified hidden"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <table id="profile-rating-details-table" class="table table-condensed table-striped">
+                    <thead>
+                    <tr>
+                      <th>Leaderboard</th>
+                      <th>Rank</th>
+                      <th>Rating</th>
+                      <th>Highest Rating</th>
+                      <th>Games</th>
+                      <th>Streak</th>
+                      <th>Longest Streak</th>
+                      <th>Wins</th>
+                      <th>Losses</th>
+                      <th>Drops</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <canvas id="profile-rating-history-canvas"></canvas>
+                </div>
+              </div>
+              <br>
+              <div id="profile-recent-matches-text" class="row">
+                <h5></h5>
+              </div>
+              <div class="row">
+                <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <table id="profile-matches-table" class="table table-condensed table-striped match-filter" width="100%">
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="api" class="main-content tab hidden-tab">
+            <div class="container">
+              <p>It is always great to see what people are able to do with data.  Currently testing an API to share the data collected by aoe2.net for anyone to use with their projects.</p>
+              <hr>
+              <h4>Strings</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request a list of strings used by the API.</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/strings</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:HD=aoe2hd, Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>language <i>(Optional, defaults to en)</i></dt><dd>Language <i>(en, de, el, es, es-MX, fr, hi, it, ja, ko, ms, nl, pt, ru, tr, vi, zh, zh-TW)</i></dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/strings?game=aoe2de&language=en
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Leaderboard</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request the current leaderboards</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/leaderboard</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Required)</i></dt><dd>Leaderboard ID (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>start <i>(Required)</i></dt><dd>Starting rank <i>(Ignored if search, steam_id, or profile_id are defined)</i></dd>
+                    <dt>count <i>(Required)</i></dt><dd>Number of leaderboard entries to get <i>(Must be 10000 or less)</i>)</dd>
+                    <dt>search <i>(Optional)</i></dt><dd>Name Search</dd>
+                    <dt>steam_id <i>(Optional)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(Optional)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/leaderboard?game=aoe2de&leaderboard_id=3&start=1&count=1
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Lobbies</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request all open lobbies</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/lobbies</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Optional, defaults to aoe2de)</i></dt><dd>Game (Age of Empires 2:HD=aoe2hd, Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/lobbies?game=aoe2de
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Player Last Match</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request the last match the player started playing, this will be the current match if they are still in game</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/player/lastmatch</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/player/lastmatch?game=aoe2de&steam_id=76561199003184910
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Player Match History</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request the match history for a player</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/player/matches</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>start <i>(Required)</i></dt><dd>Starting match (0 is the most recent match)</dd>
+                    <dt>count <i>(Required)</i></dt><dd>Number of matches to get <i>(Must be 1000 or less)</i>)</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                    <dt>steam_ids <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910,76561198449406083)</dd>
+                    <dt>profile_ids <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658,199325)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/player/matches?game=aoe2de&steam_id=76561199003184910&count=5
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Player Rating History</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request the rating history for a player</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/player/ratinghistory</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Required)</i></dt><dd>Leaderboard ID (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>start <i>(Required)</i></dt><dd>Starting match (0 is the most recent match)</dd>
+                    <dt>count <i>(Required)</i></dt><dd>Number of matches to get <i>(Must be 10000 or less)</i>)</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/player/ratinghistory?game=aoe2de&leaderboard_id=3&steam_id=76561199003184910&count=5
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Matches</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request the rating history for a player</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/matches</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game</dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>count <i>(Required)</i></dt><dd>Number of matches to get <i>(Must be 1000 or less)</i>)</dd>
+                    <dt>since <i>(Optional)</i></dt><dd>Only show matches starting after timestamp (epoch)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/matches?game=aoe2de&count=10&since=1596775000
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Match</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request matches</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/match</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>uuid <i>(uuid or match_id Required)</i></dt><dd>Match UUID</dd>
+                    <dt>match_id <i>(uuid or match_id Required)</i></dt><dd>Match ID</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/match?uuid=66ec2575-5ee4-d241-a1fc-d7ffeffb48b6
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Number of Players Online</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Number of players in game and an estimate of the number current playing multiplayer</p>
+                  <dl class="dl-horizontal">
+                    <dt>Endpoint</dt><dd>/api/stats/players</dd>
+                  </dl>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Required)</i></dt><dd>Game (Age of Empires 2:HD=aoe2hd, Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                  </dl>
+                  <h4>Example Request</h4>
+                  <div class="w-100 p-3 bg-light">
+                    https://aoe2.net/api/stats/players?game=aoe2de
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="nightbot" class="main-content tab hidden-tab">
+            <div class="container">
+              <h4>Rank</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request rank details about a player</p>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Optional, defaults to aoe2de)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Optional, defaults to 3)</i></dt><dd>Leaderboard ID (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>language <i>(Optional, defaults to en) - not fully translated</i></dt><dd>Language <i>(en, de, el, es, es-MX, fr, hi, it, ja, ko, ms, nl, pt, ru, tr, vi, zh, zh-TW)</i></dd>
+                    <dt>flag <i>(Optional, defaults to true)</i></dt><dd>Show player flag</dd>
+                    <dt>search <i>(search, steam_id or profile_id required)</i></dt><dd>Name Search, returns the highest rated player</dd>
+                    <dt>steam_id <i>(search, steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(search, steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Command</h4>
+                  <div class="w-100 p-3 bg-light">
+                    !addcom !rank $(urlfetch https://aoe2.net/api/nightbot/rank?leaderboard_id=3&search=$(querystring)&steam_id=76561199003184910&flag=false)
+                  </div>
+                  <h4>Example Responses</h4>
+                  <div class="w-100 p-3 bg-light">
+<pre><b>twitchuser:</b> !rank
+<b>Nightbot:</b> Hoang (1799) Rank #44, has played 1181 games with a 59% winrate, -1 streak, and 20 drops
+<b>twitchuser:</b> !rank Hera
+<b>Nightbot:</b> Hera (2118) Rank #1, has played 659 games with a 71% winrate, +6 streak, and 3 drops
+</pre>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Opponent</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request rank details about a players most recent opponent (1v1 only)</p>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Optional, defaults to aoe2de)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Optional, defaults to 3)</i></dt><dd>Leaderboard ID is used when search is defined, will find the highest rated player matching the search term (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>language <i>(Optional, defaults to en) - not fully translated</i></dt><dd>Language <i>(en, de, el, es, es-MX, fr, hi, it, ja, ko, ms, nl, pt, ru, tr, vi, zh, zh-TW)</i></dd>
+                    <dt>flag <i>(Optional, defaults to true)</i></dt><dd>Show player flag</dd>
+                    <dt>search <i>(search, steam_id or profile_id required)</i></dt><dd>Name Search, returns the highest rated player</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Command</h4>
+                  <div class="w-100 p-3 bg-light">
+                    !addcom !opponent $(urlfetch https://aoe2.net/api/nightbot/opponent?search=$(querystring)&steam_id=76561199003184910&flag=false)
+                  </div>
+                  <h4>Example Responses</h4>
+                  <div class="w-100 p-3 bg-light">
+<pre><b>twitchuser:</b> !opponent
+<b>Nightbot:</b> DracKeN (1815) Rank #41, has played 642 games with a 58% winrate, -3 streak, and 18 drops
+<b>twitchuser:</b> !opponent Hera
+<b>Nightbot:</b> ACCM (1935) Rank #16, has played 528 games with a 64% winrate, +1 streak, and 16 drops
+</pre>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Match</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request details about the current or last match</p>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Optional, defaults to aoe2de)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Optional, defaults to 3)</i></dt><dd>Leaderboard ID is used when search is defined, will find the highest rated player matching the search term (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>language <i>(Optional, defaults to en) - not fully translated</i></dt><dd>Language <i>(en, de, el, es, es-MX, fr, hi, it, ja, ko, ms, nl, pt, ru, tr, vi, zh, zh-TW)</i></dd>
+                    <dt>color <i>(Optional, defaults to true)</i></dt><dd>Show player colors</dd>
+                    <dt>flag <i>(Optional, defaults to false)</i></dt><dd>Show player flag</dd>
+                    <dt>search <i>(search, steam_id or profile_id required)</i></dt><dd>Name Search, returns the highest rated player</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Command</h4>
+                  <div class="w-100 p-3 bg-light">
+                    !addcom !match $(urlfetch https://aoe2.net/api/nightbot/match?search=$(querystring)&steam_id=76561199003184910&color=false&flag=false)
+                  </div>
+                  <h4>Example Responses</h4>
+                  <div class="w-100 p-3 bg-light">
+<pre><b>twitchuser:</b> !match
+<b>Nightbot:</b> Hoang (1815) as Celts -VS- DracKeN (1820) as Celts playing on Black Forest
+<b>twitchuser:</b> !match Hera
+<b>Nightbot:</b> Hera (2112) as Mayans -VS- ACCM (1960) as Aztecs playing on Gold Rush
+</pre>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Civs</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request civs from the current or last match</p>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Optional, defaults to aoe2de)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Optional, defaults to 3)</i></dt><dd>Leaderboard ID is used when search is defined, will find the highest rated player matching the search term (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>language <i>(Optional, defaults to en) - not fully translated</i></dt><dd>Language <i>(en, de, el, es, es-MX, fr, hi, it, ja, ko, ms, nl, pt, ru, tr, vi, zh, zh-TW)</i></dd>
+                    <dt>search <i>(search, steam_id or profile_id required)</i></dt><dd>Name Search, returns the highest rated player</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Command</h4>
+                  <div class="w-100 p-3 bg-light">
+                    !addcom !civs $(urlfetch https://aoe2.net/api/nightbot/civs?search=$(querystring)&steam_id=76561199003184910)
+                  </div>
+                  <h4>Example Responses</h4>
+                  <div class="w-100 p-3 bg-light">
+<pre><b>twitchuser:</b> !civs
+<b>Nightbot:</b> Hoang: Celts, DracKeN: Celts
+<b>twitchuser:</b> !civs Hera
+<b>Nightbot:</b> Hera: Mayans, ACCM: Aztecs
+</pre>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Map</h4>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <p>Request the current map name</p>
+                  <h4>Request Parameters</h4>
+                  <dl class="dl-horizontal">
+                    <dt>game <i>(Optional, defaults to aoe2de)</i></dt><dd>Game (Age of Empires 2:Definitive Edition=aoe2de)</dd>
+                    <dt>leaderboard_id <i>(Optional, defaults to 3)</i></dt><dd>Leaderboard ID is used when search is defined, will find the highest rated player matching the search term (Unranked=0, 1v1 Deathmatch=1, Team Deathmatch=2, 1v1 Random Map=3, Team Random Map=4)</dd>
+                    <dt>language <i>(Optional, defaults to en) - not fully translated</i></dt><dd>Language <i>(en, de, el, es, es-MX, fr, hi, it, ja, ko, ms, nl, pt, ru, tr, vi, zh, zh-TW)</i></dd>
+                    <dt>search <i>(search, steam_id or profile_id required)</i></dt><dd>Name Search, returns the highest rated player</dd>
+                    <dt>steam_id <i>(steam_id or profile_id required)</i></dt><dd>steamID64 (ex: 76561199003184910)</dd>
+                    <dt>profile_id <i>(steam_id or profile_id required)</i></dt><dd>Profile ID (ex: 459658)</dd>
+                  </dl>
+                  <h4>Example Command</h4>
+                  <div class="w-100 p-3 bg-light">
+                    !addcom !map $(urlfetch https://aoe2.net/api/nightbot/map?search=$(querystring)&steam_id=76561199003184910)
+                  </div>
+                  <h4>Example Responses</h4>
+                  <div class="w-100 p-3 bg-light">
+<pre><b>twitchuser:</b> !map
+<b>Nightbot:</b> Black Forest
+<b>twitchuser:</b> !map Hera
+<b>Nightbot:</b> Gold Rush
+</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer id="footer">
+            <p>Powered by <a href="http://steampowered.com" target="_blank">Steam</a></p>
+            
+            <p><i>Age of Empires II: HD© and Age of Empires II: Definitive Edition© Microsoft Corporation.  AoE2.net was created under Microsoft's "<a href='https://www.xbox.com/en-US/developers/rules' target='_blank'>Game Content Usage Rules</a>" using assets from Age of Empires II: Definitive Edition, and it is not endorsed by or affiliated with Microsoft.</i></p>
+          </footer>
+        </div>
+        <div class="col-md-2 bg-light" id="sidebar">
+          <div id="chat">
+            <div id="chat-messages">
+              <ul id="chat-messages-list" class="list-unstyled"></ul>
+            </div>
+            <div id="chat-actions">
+              <form id="chat-form">
+                <div class="input-group chat-input-group">
+                  <input type="text" class="form-control">
+                  <span class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><span class="octicon octicon-chevron-right"></span></button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript -->
+    <script src='/assets/js/messages.js' type='text/javascript'></script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js" ></script>
+    <script src="/webjars/datatables/1.10.21/js/jquery.dataTables.min.js" ></script>
+    <script src="/webjars/datatables/1.10.21/js/dataTables.bootstrap4.js" ></script>
+    <script src="/webjars/jqueryui-layout/1.4.0/jquery.layout.js" ></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    <script src="/webjars/bootbox/4.4.0/bootbox.js" ></script>
+    <script src="/webjars/momentjs/2.24.0/min/moment.min.js" ></script>
+    <script src="/webjars/chart.js/dist/Chart.bundle.js" ></script>
+    <script src="/webjars/jstimezonedetect/1.0.6/jstz.min.js" ></script>
+    
+    <script src='/assets/js/timeago/9754b17ed00603655d793044138ea139-jquery.timeago.js' type='text/javascript'></script>
+    
+    
+    <!-- Custom JavaScript -->
+    <script src="/vassets/javascripts/218ad74bb3f358193cdc43d5cf410ef2-main.js" type="text/javascript"></script>
+  </body>
+</html>
