@@ -34,12 +34,14 @@ async function init() {
   data.bid = bid;
   data.sid = sid;
   if (bid && sid) {
-    // db.collection(`/scoreboards/${bid}/allboards`)
-    //   .doc(sid)
-    //   .onSnapshot((scoreboard) => {
-    //     let data = scoreboard.data();
-    //     updateScoreboadToDOM(data);
-    //   });
+    db.collection(`/scoreboards/${bid}/allboards`)
+      .doc(sid)
+      .onSnapshot((scoreboard) => {
+        console.log('We got new data');
+        let data = scoreboard.data();
+        console.log({data});
+        updateScoreboadToDOM(data);
+      });
   }
   getDataFromAoe2(steamid);
 }
@@ -47,33 +49,9 @@ async function init() {
 init();
 
 function updateScoreboadToDOM(scoreboard) {
-  console.log(scoreboard);
-  let p1 = {
-    name: scoreboard.p1Name || "Player 1",
-    score: scoreboard.p1Score | 0,
-    bg_color: scoreboard.p1_BGColor || "#1e88e5",
-  };
-  let p2 = {
-    name: scoreboard.p2Name || "Player 2",
-    score: scoreboard.p2Score | 0,
-    bg_color: scoreboard.p2_BGColor || "#1e88e5",
-  };
-
-  document.getElementById("p1Score-value").innerHTML = p1.score;
-  document.getElementById("p1Score-label").innerHTML = p1.name;
-  document.getElementById("p1Score-label").parentNode.style.backgroundColor =
-    p1.bg_color;
-
-  document.getElementById("p2Score-value").innerHTML = p2.score;
-  document.getElementById("p2Score-label").innerHTML = p2.name;
-  document.getElementById("p2Score-label").parentNode.style.backgroundColor =
-    p2.bg_color;
-  console.log(p1.bg_color, p2.bg_color);
-
-  document.getElementById("sc-name").innerHTML = scoreboard.room;
-
-  data.p1 = p1;
-  data.p2 = p2;
+  // Here for PlayerLabel, we get data for the steam ID
+  let playerSteamID = scoreboard.steamid || '76561198088178833'; // defaults to T90Official bcz
+  getDataFromAoe2(playerSteamID);
 }
 
 function addScore(playerLabel) {
@@ -163,6 +141,7 @@ async function getPlayerDataFromSteam(steeam_id) {
   });
   console.log(response);
   let xmlResposne = await response.text(); // parses JSON response into native JavaScript objects
+  console.log({xmlResposne});
   let parser = new DOMParser();
   let xml = parser.parseFromString(xmlResposne, "application/xml");
   let pName = xml.getElementsByTagName('steamID')[0].innerHTML.replace('<![CDATA[', '').replace(']]>', '');

@@ -80,3 +80,30 @@ function addScore(playerLabel) {
     ...toUpdateObj
   });
 }
+
+
+async function getAoe2DEMatchHistory(steeam_id) {
+  let aoe2netUrl = new URL(
+    `https://cors-anywhere.herokuapp.com/https://aoe2.net/api/player/ratinghistory`
+  );
+  aoe2netUrl.search = new URLSearchParams({
+    game: "aoe2de",
+    leaderboard_id: 3,
+    steam_id: steeam_id,
+    count: 60,
+  });
+  // Default options are marked with *
+  const response = await fetch(aoe2netUrl, {
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    // credentials: 'same-origin', // include, *same-origin, omit
+  });
+  console.log(response);
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+ async function auto_everything() {
+   let data = await getAoe2DEMatchHistory('76561198098219750');
+   console.log(data);
+
+ }
+
+ auto_everything();

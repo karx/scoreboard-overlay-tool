@@ -175,3 +175,37 @@ p2_picker.addEventListener("color-changed", (event) => {
   const newColor = event.detail.value;
   debouncedUpdateColorOnCloud("p2", newColor);
 });
+
+
+function updateplayercard() {
+  let steamid = document.getElementById('playerCardSteamID').value;
+  db.collection(`/scoreboards/${data.bid}/allboards`)
+    .doc(data.sid)
+    .update({
+      steamid: steamid
+    });
+}
+
+function selectedplayer(steam_id) {
+  document.getElementById('playerCardSteamID').value = steam_id;
+}
+
+document.getElementById('playerCardName').addEventListener("keyup", async (event) => {
+  if(event.key === "Enter") {
+    let searchname = event.target.value;
+    let searchResult = await searchAoE2(searchname);
+
+
+    let domToAdd = ``;
+    searchResult.leaderboard.forEach((player) => {
+      let playerDOM = `<div class="player-result-each" id=${player.steam_id} onclick="selectedplayer('${player.steam_id}')">`;
+      playerDOM += ` ${player.name} (${player.rating}) `;
+      playerDOM += `</div>`;
+
+      domToAdd += playerDOM;
+    });
+
+    document.getElementById('searchresults').innerHTML = domToAdd;
+    console.log(searchResult);
+  }
+})
