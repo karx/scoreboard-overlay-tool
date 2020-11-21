@@ -79,7 +79,7 @@
               class="playerLabel-label labelVal"
               id="playerCardName"
               value=""
-              placeholder="Sea]rch Player Name"
+              placeholder="Search Player Name"
             />
           <div class="searchResults" id="searchresults"></div>
           
@@ -99,9 +99,20 @@
         <input type="text" value="URL for OBS Overlay" id="myInput">
 
             <div class="tooltip">
-            <button onclick="copyToClipboad()" onmouseout="outFunc()">
+            <button onclick="copyToClipboad('myInput')" onmouseout="outFunc()">
             <span class="tooltiptext" id="myTooltip">Copy URL to clipboard</span>
-            Copy URL
+            Copy URL for Scoreboard
+            </button>
+            </div>
+      </div>
+      <div class="copy-live-url">
+          
+        <input type="text" value="URL for OBS Overlay" id="playerCardcp">
+
+            <div class="tooltip">
+            <button onclick="copyToClipboad('playerCardcp')" onmouseout="outFunc()">
+            <span class="tooltiptext" id="myTooltip">Copy URL to clipboard</span>
+            Copy URL for AoE II Profile Card
             </button>
             </div>
       </div>

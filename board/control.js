@@ -33,6 +33,7 @@ async function init() {
         let data = scoreboard.data();
         updateScoreboadToDOM(data);
         updateViewURLToDOM(data.bid, data.sid);
+        updateCardURLToDOM(data.bid, data.sid);
       });
   }
 }
@@ -70,6 +71,13 @@ function updateViewURLToDOM(bid, sid) {
     .replace(/\/+$/, "")
     .replace("/board", "/scoreView")}`;
   document.getElementById("myInput").value = url;
+}
+
+function updateCardURLToDOM(bid, sid) {
+  let url = `${window.location.href
+    .replace(/\/+$/, "")
+    .replace("/board", "/playerLabel")}`;
+  document.getElementById("playerCardcp").value = url;
 }
 
 function addScore(playerLabel) {
@@ -122,8 +130,8 @@ function updateNamesToCloud() {
   });
 }
 
-function copyToClipboad() {
-  var copyText = document.getElementById("myInput");
+function copyToClipboad(elm) {
+  var copyText = document.getElementById(elm);
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   document.execCommand("copy");
