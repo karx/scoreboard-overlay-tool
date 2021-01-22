@@ -3,6 +3,7 @@ let db = firebase.firestore();
 let data = {
   p1: {},
   p2: {},
+  p3: {},
 };
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -51,6 +52,11 @@ function updateScoreboadToDOM(scoreboard) {
     score: scoreboard.p2Score | 0,
     bg_color: scoreboard.p2_BGColor || "#1e88e5"
   };
+  let p3 = {
+    name: scoreboard.p3Name || "Player 3",
+    score: scoreboard.p3Score | 0,
+    bg_color: scoreboard.p3_BGColor || "#1e88e5"
+  };
 
   document.getElementById("p1Score-value").innerHTML = p1.score;
   document.getElementById("p1Score-label").value = p1.name;
@@ -60,10 +66,15 @@ function updateScoreboadToDOM(scoreboard) {
   document.getElementById("p2Score-label").value = p2.name;
   document.getElementById("p2Color_piker").color = p2.bg_color;
 
+  document.getElementById("p3Score-value").innerHTML = p3.score;
+  document.getElementById("p3Score-label").value = p3.name;
+  document.getElementById("p3Color_piker").color = p3.bg_color;
+
   document.getElementById("sc-name").innerHTML = scoreboard.room;
 
   data.p1 = p1;
   data.p2 = p2;
+  data.p3 = p3;
 }
 
 function updateViewURLToDOM(bid, sid) {
@@ -85,7 +96,7 @@ function addScore(playerLabel) {
   console.log(`${playerLabel}Score-value = ${currentScore + 1}`);
   let toUpdateObj = {};
   toUpdateObj[`${playerLabel}Score`] = currentScore + 1;
-
+  console.log({playerLabel});
   console.log(toUpdateObj);
   db.collection(`/scoreboards/${data.bid}/allboards`)
     .doc(data.sid)
@@ -123,10 +134,12 @@ function updateColorOnCloud(playerLabel, color) {
 function updateNamesToCloud() {
   let p1Name = document.getElementById("p1Score-label").value;
   let p2Name = document.getElementById("p2Score-label").value;
+  let p3Name = document.getElementById("p3Score-label").value;
 
   db.collection(`/scoreboards/${data.bid}/allboards`).doc(data.sid).update({
     p1Name: p1Name,
     p2Name: p2Name,
+    p3Name: p3Name,
   });
 }
 
@@ -169,20 +182,6 @@ function debounce(func, wait, immediate) {
 };
 
 
-const p1_picker = document.getElementById("p1Color_piker");
-const p2_picker = document.getElementById("p2Color_piker");
-let debouncedUpdateColorOnCloud= debounce(updateColorOnCloud, 250);
-
-p1_picker.addEventListener("color-changed", (event) => {
-  const newColor = event.detail.value;
-
-    debouncedUpdateColorOnCloud("p1", newColor);
-
-});
-p2_picker.addEventListener("color-changed", (event) => {
-  const newColor = event.detail.value;
-  debouncedUpdateColorOnCloud("p2", newColor);
-});
 
 
 function updateplayercard() {

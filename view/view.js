@@ -2,7 +2,8 @@ let db = firebase.firestore();
 
 let data = {
   p1: {},
-  p2: {}
+  p2: {},
+  p3: {}
 };
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -47,17 +48,25 @@ function updateScoreboadToDOM(scoreboard) {
     name: scoreboard.p2Name || "Player 2",
     score: scoreboard.p2Score | 0,
   };
+  let p3 = {
+    name: scoreboard.p3Name || "Player 3",
+    score: scoreboard.p3Score | 0,
+  };
 
   document.getElementById("p1Score-value").innerHTML = p1.score;
   document.getElementById("p1Score-label").innerHTML = p1.name;
 
   document.getElementById("p2Score-value").innerHTML = p2.score;
   document.getElementById("p2Score-label").innerHTML = p2.name;
+
+  document.getElementById("p3Score-value").innerHTML = p3.score;
+  document.getElementById("p3Score-label").innerHTML = p3.name;
   
   document.getElementById("sc-name").innerHTML = scoreboard.room;
   
   data.p1 = p1;
   data.p2 = p2;
+  data.p3 = p3;
 }
 
 function addScore(playerLabel) {
@@ -66,7 +75,7 @@ function addScore(playerLabel) {
   let toUpdateObj = {};
   toUpdateObj[`${playerLabel}Score`] = currentScore + 1;
 
-    console.log(toUpdateObj);
+  console.log(toUpdateObj);
   db.collection(`/scoreboards/${data.bid}/allboards`)
   .doc(data.sid)
   .update({
