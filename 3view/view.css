@@ -1,0 +1,41 @@
+body {
+    background-color: #0F0F00;  
+    color: #F0F0FF;
+
+}
+.scoreboard-container{
+    width: 100%;
+    height: 100%;
+}
+
+.scoreboard-label {
+    text-align: center;
+}
+
+.scoreValues {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.eachPlayer {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.numVal {
+    font-size: 43px;
+}
+a-scene {
+    height: 300px;
+    width: 600px;
+  }
+  
+  .player-details{ 
+      
+    height: 300px;
+    width: 600px;
+  }
