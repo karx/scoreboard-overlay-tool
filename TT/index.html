@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&family=Changa+One:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="TTscorecontrol.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <script type="module" src="https://unpkg.com/vanilla-colorful?module"></script>
+    <title>kaaroScoreboard | Control</title>
+  </head>
+  <body>
+    <div class="tt-container">
+      <div class="player-1 playerEach" onclick="addScore('p1')">
+        <div class="p1Score-label labelVal">
+          <div id="p1Score-label">
+              Player 1
+          </div>
+      </div>
+
+      <div class="p1Score-value numVal" id="p1Score-value">
+          0   
+      </div>
+      <div class="setVal" id="p1Set-value"></div>
+     
+      </div>
+      <div class="control-panel">
+        <div class="scoreboard-label" id="sc-name">
+                BO7 Arabia
+            </div>
+      </div>
+      <div class="player-2 playerEach" onclick="addScore('p2')">
+        <div class="p2Score-label labelVal">
+          <div id="p2Score-label">
+              Player 2
+          </div>
+      </div>
+
+      <div class="p2Score-value numVal" id="p2Score-value">
+          0
+      </div>
+      <div class="setVal" id="p2Set-value"></div>
+
+      </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBTwtv0_AUKzQ6GqewoYrAS8Y0MYh107Z4",
+        authDomain: "kaaroscoreboad.firebaseapp.com",
+        databaseURL: "https://kaaroscoreboad.firebaseio.com",
+        projectId: "kaaroscoreboad",
+        storageBucket: "kaaroscoreboad.appspot.com",
+        messagingSenderId: "632027725464",
+        appId: "1:632027725464:web:350f30ab3bc2a2815f9aed",
+        measurementId: "G-MN1VHQW24R",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="./TTscorecontrol.js"></script>
+  </body>
+</html>
