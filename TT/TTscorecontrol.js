@@ -1,6 +1,7 @@
 let db = firebase.firestore();
 var msg = new SpeechSynthesisUtterance();
 var voices = window.speechSynthesis.getVoices();
+let WINNING_POINT = 21;
 console.log(voices);
 msg.voice = voices[3]; 
 msg.volume = 1; // From 0 to 1
@@ -96,30 +97,63 @@ function addScore(playerLabel) {
 
 }
 
+function scoreToWords(data) {
+  
+  let p1 = data.p1.score === WINNING_POINT - 1 ? 'Game' : data.p1.score;
+  let p2 = data.p2.score === WINNING_POINT - 1 ? 'Game' : data.p2.score;
+  if(data.p1.score == data.p2.score) {
+    return `${p1} all`;
+  }
+  return `${p1} ${p2}`;
+}
 function doSpeechofScore(data) {
-  msg.text = `${data.p1.score} ${data.p2.score}`;
-
+  msg.text = scoreToWords(data);
   window.speechSynthesis.speak(msg);
-  if(data.p1.score === 21) {
-    msg.text = `${data.p1.name} Wins`;
+  if(data.p1.score === WINNING_POINT) {
+    setTimeout( (msg) => { addSet('p1') }, 5000);
+  } else if (data.p2.score === WINNING_POINT) {
+    setTimeout( (msg) => { addSet('p2') }, 5000);
+  }
+  if((data.p1.score + data.p2.score)%5 === 0 ) {
+    msg.text = `Serve Change`;
     window.speechSynthesis.speak(msg);
-    setTimeout( () => { addSet('p1') }, 5000);
-  } else if (data.p2.score === 21) {
-    msg.text = `${data.p2.name} Wins`;
+  }
+  console.log({
+    p1Score: data.p1.score,
+    p2Score: data.p2.score,
+  });
+  if(data.p1.score - data.p2.score == 0 && data.p1.score === WINNING_POINT - 1) {
+    WINNING_POINT += 1;
+    msg.text = `Deuce`;
     window.speechSynthesis.speak(msg);
-    setTimeout( () => { addSet('p2') }, 5000);
   }
 
 }
 
 function addSet(playerLabel) {
 
+  msg.text = `${data[`${playerLabel}`].name} Wins`;
+  window.speechSynthesis.speak(msg);
+    
   let currentSet = data[playerLabel].set;
   console.log(`${playerLabel}Set-value = ${currentSet + 1}`);
   let toUpdateObj = {};
   toUpdateObj[`${playerLabel}Set`] = currentSet + 1;
+    console.log(toUpdateObj);
+  db.collection(`/scoreboards/${data.bid}/allboards`)
+  .doc(data.sid)
+  .update({
+    ...toUpdateObj
+  });
+  cleanMatch();
+
+}
+
+function cleanMatch() {
+  let toUpdateObj = {};
   toUpdateObj[`p1Score`] = 0;
   toUpdateObj[`p2Score`] = 0;
+  WINNING_POINT = 21;
     console.log(toUpdateObj);
   db.collection(`/scoreboards/${data.bid}/allboards`)
   .doc(data.sid)
