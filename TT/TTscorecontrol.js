@@ -100,7 +100,7 @@ function doSpeechofScore(data) {
   msg.text = `${data.p1.score} ${data.p2.score}`;
 
   window.speechSynthesis.speak(msg);
-  if(data.p1.score === 1) {
+  if(data.p1.score === 21) {
     msg.text = `${data.p1.name} Wins`;
     window.speechSynthesis.speak(msg);
     setTimeout( () => { addSet('p1') }, 5000);
