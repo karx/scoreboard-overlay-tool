@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="view.css">
+    <title>kaaroScoreboard | View</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-bar clicked" id="prof-bar">
+            <div class="logo-or-somethoing"></div>
+            <div class="title-container">
+              
+            </div>
+            <div class="filler-end"></div>
+          </div>
+          <div class="scoreboard-container">
+            <div class="scoreboard-label" id="sc-name">
+                BO7 Arabia
+            </div>
+            <div class="scoreValues">
+                <div class="p1Score eachPlayer">
+                    <div class="p1Score-value numVal" id="p1Score-value">
+                        0   
+                    </div>
+                    <div class="p1Score-label labelVal" id="p1Score-label">
+                        Player 1
+                    </div>
+                    
+                    
+                </div>
+                <div class="p2Score eachPlayer">
+                    <div class="p2Score-value numVal" id="p2Score-value">
+                        0
+                    </div>
+                    <div class="p2Score-label labelVal" id="p2Score-label">
+                        Player 2
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>  
+
+        <div class="tt-box">
+            <div class="player-box">
+                <div class="eachPlayer-box player-a">
+                    <div class="player-svg">
+                        🀄
+                    </div>
+                    <div class="player-name" id="player-a-label">
+                        kaaro
+                    </div>
+                </div>      
+                <div class="eachPlayer-box player-b">
+                    <div class="player-svg" id="player-b-svg">
+                        🎇
+                    </div>
+                    <div class="player-name" id="player-b-label">
+                        Neelaneel
+                    </div>
+                </div>
+            </div>
+            <div class="setBox">
+                <div class="eachSet" id="set-a">
+                    1
+                </div>
+                <div class="eachSet" id="set-b">
+                    1
+                </div>
+            </div>
+            <div class="pointBox">
+                <div class="eachpoint" id="point-a">
+                    10
+                </div>
+                <div class="eachpoint" id="point-b">
+                    11
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBTwtv0_AUKzQ6GqewoYrAS8Y0MYh107Z4",
+        authDomain: "kaaroscoreboad.firebaseapp.com",
+        databaseURL: "https://kaaroscoreboad.firebaseio.com",
+        projectId: "kaaroscoreboad",
+        storageBucket: "kaaroscoreboad.appspot.com",
+        messagingSenderId: "632027725464",
+        appId: "1:632027725464:web:350f30ab3bc2a2815f9aed",
+        measurementId: "G-MN1VHQW24R",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="./view.js"></script>
+    
+</body>
+</html>

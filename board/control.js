@@ -34,6 +34,7 @@ async function init() {
         updateScoreboadToDOM(data);
         updateViewURLToDOM(data.bid, data.sid);
         updateCardURLToDOM(data.bid, data.sid);
+        updateTTViewURLToDOM(data.bid, data.sid);
       });
   }
 }
@@ -78,6 +79,13 @@ function updateCardURLToDOM(bid, sid) {
     .replace(/\/+$/, "")
     .replace("/board", "/playerLabel")}`;
   document.getElementById("playerCardcp").value = url;
+}
+
+function updateTTViewURLToDOM(bid, sid) {
+  let url = `${window.location.href
+    .replace(/\/+$/, "")
+    .replace("/board", "/TTview")}`;
+  document.getElementById("ttLiveURL").value = url;
 }
 
 function addScore(playerLabel) {
