@@ -39,6 +39,7 @@ data.sid = sid;
 init();
 
 function updateScoreboadToDOM(scoreboard) {
+  console.log('Updating');
   let p1 = {
     name: scoreboard.p1Name || "Player 1",
     score: scoreboard.p1Score | 0,
@@ -57,7 +58,7 @@ function updateScoreboadToDOM(scoreboard) {
   document.getElementById("player-a-label").innerHTML = p1.name;
   document.getElementById("set-a").innerHTML = p1.set;
   
-  document.getElementById("point-a").innerHTML = p2.score;
+  document.getElementById("point-b").innerHTML = p2.score;
   document.getElementById("player-b-label").innerHTML = p2.name;
   document.getElementById("set-b").innerHTML = p2.set;
   
